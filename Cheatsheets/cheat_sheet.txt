@@ -1,0 +1,20 @@
+Repaso de pointers
+
+Variables que almacenan dirección de memoria de un objeto. Puedes acceder a traes de su direccion
+Para declarar un apuntador se usa el operador * se usa para acceder a la memoria
+Este operador & es para acceder a la memoria del apuntador
+
+
+Ejemplo: 
+*nombre_variable
+
+Dynamic program alocation:
+Tipo de memoria que se asinga despues que el programa se ejecuta. 
+Sirve cuando no sabes que tan grande va a ser el objeto que estas utilizando 
+Por cada new debe haber un delete. De lo contrario hay un memory leak
+
+new
+delete 
+
+Manera de declarar un arreglo dinamico: 
+arreglo = new tipo_dato[tamaño] // la palabra clave es new

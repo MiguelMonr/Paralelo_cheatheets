@@ -1,0 +1,104 @@
+#pragma omp parallel
+{
+    int id = omp_get_thread_num();
+    std::cout << "Hola desde el hilo " << id << "\n";
+}
+// Crea una región paralela, donde varios hilos ejecutan el mismo código en paralelo.
+// Explicación: Cada hilo imprime su identificador (id). Todos los hilos ejecutan el mismo código dentro de la región.
+
+
+
+#pragma omp parallel for
+for (int i = 0; i < N; i++) {
+    a[i] = i;
+    b[i] = i * 2;
+    c[i] = a[i] + b[i];
+}
+// Descripción: Distribuye las iteraciones de un bucle for entre varios hilos.
+// Explicación: Las iteraciones del bucle se distribuyen entre los hilos, permitiendo que cada hilo trabaje con un subconjunto de los datos.
+
+#pragma omp master
+{
+    std::cout << "Este mensaje es del hilo maestro\n";
+}
+Explicación: Solo el hilo maestro ejecuta el bloque de código, mientras que los otros hilos lo omiten.
+
+
+#pragma omp single
+{
+    std::cout << "Este código es ejecutado por un solo hilo\n";
+}
+Descripción: Un solo hilo (cualquiera) ejecuta el bloque de código, mientras que los demás lo omiten.
+Explicación: El código dentro del bloque es ejecutado por un solo hilo, mientras que los otros continúan.
+
+#pragma omp sections
+{
+    #pragma omp section
+    {
+        std::cout << "Sección 1 ejecutada por el hilo " << omp_get_thread_num() << "\n";
+    }
+    #pragma omp section
+    {
+        std::cout << "Sección 2 ejecutada por el hilo " << omp_get_thread_num() << "\n";
+    }
+}
+Descripción: Divide el trabajo entre secciones, donde cada sección es ejecutada por un hilo diferente.
+Explicación: Las secciones del código se dividen entre los hilos, donde cada hilo ejecuta una sección diferente.
+
+#pragma omp critical
+{
+    contador++;
+}
+Descripción: Define una región crítica donde solo un hilo puede ejecutar el código a la vez (exclusión mutua).
+Explicación: La región crítica garantiza que solo un hilo a la vez puede modificar el valor de contador.
+
+
+#pragma omp barrier
+Descripción: Obliga a todos los hilos a esperar hasta que todos alcancen la barrera antes de continuar.
+Explicación: Todos los hilos deben llegar a la barrera antes de ejecutar cualquier código posterior.
+
+#pragma omp atomic
+suma += 1;
+Descripción: Asegura que una operación específica sea ejecutada de manera atómica, evitando condiciones de carrera.
+Explicación: La operación de incremento se realiza de manera atómica, asegurando que no haya interferencias de otros hilos.
+
+#pragma omp parallel for reduction(+:suma)
+for (int i = 0; i < N; i++) {
+    suma += i;
+}
+Descripción: Combina los valores de las variables privadas de los hilos en una variable compartida utilizando una operación (suma, multiplicación, etc.).
+Explicación: Cada hilo realiza la suma de una parte del arreglo y al final los resultados se combinan en suma.
+
+#pragma omp parallel for schedule(dynamic, 10)
+for (int i = 0; i < N; i++) {
+    a[i] = i;
+    b[i] = i * 2;
+    c[i] = a[i] + b[i];
+}
+Descripción: Controla cómo se distribuyen las iteraciones de un bucle for entre los hilos.
+
+#include <omp.h>
+#include <iostream>
+
+int main() {
+    #pragma omp parallel
+    {
+        int id = omp_get_thread_num();
+        std::cout << "Hola desde el hilo " << id << "\n";
+    }
+    return 0;
+}
+Explicación: Se crea una región paralela con varios hilos que ejecutan el mismo código en paralelo. Al final, los hilos se "unen" al hilo maestro.
+
+omp_set_num_threads(n): Establece el número de hilos para la siguiente región paralela.
+omp_get_num_threads(): Devuelve el número total de hilos en la región paralela.
+omp_get_thread_num(): Devuelve el ID del hilo actual.
+
+omp_set_num_threads(n): Establece el número de hilos para la siguiente región paralela.
+omp_get_num_threads(): Devuelve el número total de hilos en la región paralela.
+omp_get_thread_num(): Devuelve el ID del hilo actual.
+Variables privadas y compartidas:
+
+private(var): Cada hilo tiene su propia copia de la variable var.
+shared(var): Todos los hilos acceden a la misma variable var.
+Temporización: omp_get_wtime() mide el tiempo de ejecución de regiones paralelas.

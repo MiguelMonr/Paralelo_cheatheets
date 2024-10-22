@@ -1,0 +1,16 @@
+Los vectores son arreglos dinamicos que pueden cambiar su tamaño. 
+Tienen la ventaha de los dynamic arrays pero sin tanta talacha. 
+Su desventaja es que no tienen tanto aceso a memoria 
+
+La manera de declarar un vector 
+vector<tipo> nombre = {valores};
+
+Importante: 
+La capacidad de un vector y size no es lo mismo.
+size es cuantos elementos actualmente tiene el vector
+vector son los elementos maximos que puede guardar
+
+Para añadir elementos en un vector necesitas  usar apuntadores: 
+vector.insert(vector.begin()+posicion, valor);   
+
+Puedes utilizar el metodo de reserve para reservar memoria de ciertos elementos en especifico. 
