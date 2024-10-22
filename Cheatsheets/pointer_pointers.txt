@@ -1,0 +1,15 @@
+Un pointer puede ser guardadado en otro pointer. 
+Es una forma de multidireccion. Puedes pensarlo de la siguiente manera: 
+Guardas la direccion de una variable en un pointer y la direccion de ese pointer la puedes guardar en otro. 
+
+Se puede declarar un pointer de la siguiente manera: dato ** pointer 
+int rows = 5, cols = 3;
+int** matrix = new int*[rows]; // Crear arreglo de punteros (filas)
+for(int i = 0; i < rows; i++)
+    matrix[i] = new int[cols]; // Crear cada fila (columnas)
+
+Para liberar memoria 
+int rows = 5, cols = 3;
+int** matrix = new int*[rows]; // Crear arreglo de punteros (filas)
+for(int i = 0; i < rows; i++)
+    matrix[i] = new int[cols]; // Crear cada fila (columnas)
