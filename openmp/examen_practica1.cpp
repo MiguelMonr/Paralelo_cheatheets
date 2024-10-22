@@ -83,7 +83,7 @@ int main() {
         float time = end - start;
         float speed_ups = promedio_serial / time;
         long long malos = numero_clientes - buenos;
-        cout << "Serial " << i << ": " << buenos << " clientes buenos, " << malos << "c lientes malos, tiempo de ejecución: " << time << ", speed ups: " << speed_ups << endl;
+        cout << "Serial " << i << ": " << buenos << " clientes buenos, " << malos << " clientes malos, tiempo de ejecución: " << time << ", speed ups: " << speed_ups << endl;
     }
 
     delete[] scores_crediticios;
